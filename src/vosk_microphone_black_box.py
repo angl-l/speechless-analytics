@@ -5,18 +5,19 @@ transcript, and saves it to transcript.txt.
 """
 
 import json
+import csv
+import time
 import queue
 from datetime import datetime
 import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 
 
-MODEL_PATH = "vosk-model-en-us-0.22-lgraph"
+MODEL_PATH = "model/vosk-model-en-us-0.22-lgraph"
 SAMPLE_RATE = 16000
-OUTPUT_FILE = "transcript.txt"
+OUTPUT_FILE = "transcript.csv"
 
 q = queue.Queue()
-
 
 def callback(indata, frames, time, status):
     if status:
@@ -30,6 +31,7 @@ recognizer = KaldiRecognizer(model, SAMPLE_RATE)
 print("Start speaking. Press Ctrl+C to stop.")
 
 full_text = ""
+start= time.perf_counter()
 
 try:
     with sd.RawInputStream(
@@ -60,11 +62,22 @@ if final_text:
     print("Final:", final_text)
     full_text += final_text + " "
 
-timestamp = datetime.now().isoformat()
+end = time.perf_counter()
 
-with open(OUTPUT_FILE, "a", encoding="utf-8") as f:
-    f.write(f"\n--- {timestamp} ---\n")
-    f.write(full_text.strip() + "\n")
+timestamp = datetime.now().isoformat()
+words = full_text.split(" ")
+name = words[0]
+raw_text = " ". join(words[1:])
+time_taken_sec = end - start
+
+with open(OUTPUT_FILE, "a", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+
+    if f.tell() == 0:
+        writer.writerow(["timestamp", "name", "raw_script", "time_taken_sec"])
+
+    writer.writerow([timestamp, name, raw_text, time_taken_sec])
+    
 
 print(f"\nSaved to {OUTPUT_FILE}")
 print("Transcript:", full_text.strip())
