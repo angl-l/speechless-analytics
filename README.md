@@ -1,4 +1,4 @@
-For your project, **CSV validation** should verify that the dataset is complete, correctly formatted, and suitable for analytics. Based on the dataset you provided, here is a validation report.
+ **CSV validation** should verify that the dataset is complete, correctly formatted, and suitable for analytics. Based on the dataset we provided, here is a validation report.
 
 # Validation Report
 
