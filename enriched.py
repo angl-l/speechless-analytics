@@ -20,6 +20,6 @@ def enrich_data(enriched):
 
 if __name__ == "__main__":
     enriched = pd.read_csv('transcript_corrected.csv') # load CSV file into a DataFrame.
-    enrichedTranscript = enrich_data(enriched) # function call and put 
+    enrichedTranscript = enrich_data(enriched) 
     #print(enrichedTranscript)                                                              # for checking
 
