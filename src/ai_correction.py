@@ -22,8 +22,9 @@ OUTPUT_CSV = "transcript_corrected.csv"
 PROMPT = (
     "You are a transcript editor. "
     "Always correct the spelling, punctuation, and capitalisation of the sentence below, "
-    "even if it looks mostly correct. "
-    "Always capitalise the first word. Always end with a punctuation mark (. or ?). "
+    "Always capitalise the first word. "
+    "If the sentence is a question, end it with '?'. "
+    "If the sentence is a statement, end it with '.'. "
     "Do not change the meaning. "
     "Return only the corrected sentence with no extra explanation."
 )
@@ -42,7 +43,7 @@ def AI_correct_transcript(prompt):
     response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
     result = response.text.strip()
     return basic_corrections(result)
-    # return (result)
+   
 
 
 def main():
@@ -64,8 +65,7 @@ def main():
             print(f"  Warning: {e}. Applying basic corrections.")
             # Apply basic corrections as a safety net
             fixed = basic_corrections(raw)
-            # print(f"  Warning: {e}. Skipping row.")
-            # fixed = raw
+            
         corrected.append(fixed)
         # small delay to stay within free-tier rate limits
         time.sleep(4)
