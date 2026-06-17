@@ -1,7 +1,7 @@
 """Stage 2: AI Correction using Gemini API.
 
 Reads transcript.csv, sends each raw_script value to Gemini for correction
-(spelling, punctuation, capitalisation — meaning preserved), and writes
+(spelling, punctuation, capitalisation, meaning preserved), and writes
 the result back as a new column 'text'.
 
 Set GEMINI_API_KEY before running:
@@ -31,6 +31,8 @@ PROMPT = (
 
 def basic_corrections(text):
     text = text.strip()        # removes trailing spaces
+    if text == "":
+           return text          # nothing to correct
     text = text[0].upper() + text[1:]  # capitalises first letter
     if text[-1] not in ".?!":
         text += "."            # adds full stop if missing
@@ -42,7 +44,7 @@ def AI_correct_transcript(prompt):
     response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
     result = response.text.strip()
     return basic_corrections(result)
-    # return (result)
+    
 
 
 def main():
@@ -53,7 +55,6 @@ def main():
 
     corrected = []
     for i, row in df.iterrows():
-    # for i, row in df.iloc[:12].iterrows():
         raw = str(row["raw_script"])
         print(f"Correcting row {i + 1}/{len(df)}: {raw!r}")
         try:
@@ -64,8 +65,7 @@ def main():
             print(f"  Warning: {e}. Applying basic corrections.")
             # Apply basic corrections as a safety net
             fixed = basic_corrections(raw)
-            # print(f"  Warning: {e}. Skipping row.")
-            # fixed = raw
+            
         corrected.append(fixed)
         # small delay to stay within free-tier rate limits
         time.sleep(4)
