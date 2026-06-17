@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speechless Analytics</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: #0d1b2a;
+      border-radius: 14px;
+      padding: 20px 30px;
+      margin-bottom: 30px;
+    }
+
+    .header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .header-text p {
+      margin: 6px 0 0;
+      color: #1a7a4a;
+      font-style: italic;
+      font-size: 17px;
+      text-align: center;
+    }
+
+    .team {
+      text-align: center;
+      color: #444;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .team span {
+      color: #1a7a4a;
+      font-weight: bold;
+    }
+
+    /* Stage cards */
+    .stage {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 5px solid #1a7a4a;
+    }
+
+    .stage h2 {
+      margin-top: 0;
+      color: #0d1b2a;
+      border-bottom: 2px solid #f0f2f5;
+      padding-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1a7a4a;
+      color: white;
+      border-radius: 5px;
+      padding: 3px 12px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    th {
+      background: #0d1b2a;
+      color: white;
+      padding: 9px 10px;
+      text-align: left;
+    }
+
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    tr:hover { background: #f7fdf9; }
+
+    /* Metric cards */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-top: 12px;
+    }
+
+    .metric-card {
+      background: #f0faf5;
+      border: 1px solid #c3e6d0;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .metric-card .value {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1a7a4a;
+    }
+
+    .metric-card .label {
+      font-size: 12px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 30px;
+    }
+
+    .error {
+      color: #e74c3c;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <img src="resources/logo.jpg" alt="Speechless Analytics Logo"
+         onerror="this.style.display='none'"/>
+    <div class="header-text">
+      <h1>SPEECHLESS ANALYTICS</h1>
+      <p>We listen. AI corrects. Data speaks.</p>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="team">
+    Team:
+    <span>Angela</span> &nbsp;·&nbsp;
+    <span>Elena</span> &nbsp;·&nbsp;
+    <span>Rihanna</span> &nbsp;·&nbsp;
+    <span>Solomon</span>
+  </div>
+
+  <!-- Stages -->
+  <div class="stage">
+    <h2>🎙️ Stage 1 — Speech Transcription (Vosk)</h2>
+    <div id="stage1">Loading...</div>
+  </div>
+
+  <div class="stage">
+    <h2>🤖 Stage 2 — AI Correction (Gemini)</h2>
+    <div id="stage2">Loading...</div>
+  </div>
+
+  <div class="stage">
+    <h2>📊 Stage 3 — Enrichment</h2>
+    <div id="stage3">Loading...</div>
+  </div>
+
+  <div class="stage">
+    <h2>✅ Stage 4 — Validation & Analysis</h2>
+    <div id="stage4">Loading...</div>
+  </div>
+
+  <div class="footer">Speechless Analytics · Birkbeck University · 2026</div>
+
+  <script>
+    fetch("pipeline_results.json")
+      .then(res => res.json())
+      .then(data => {
+        renderStage1(data.stage1);
+        renderStage2(data.stage2);
+        renderStage3(data.stage3);
+        renderStage4(data.stage4);
+      })
+      .catch(() => {
+        document.querySelectorAll(".stage div").forEach(el => {
+          el.innerHTML = '<p class="error">❌ pipeline_results.json not found. Run: python main.py first.</p>';
+        });
+      });
+
+    function renderStage1(data) {
+      let html = `<span class="badge">✅ ${data.rows} rows transcribed</span>`;
+      html += "<table><tr><th>Speaker</th><th>Raw Transcript</th></tr>";
+      data.sample.forEach(row => {
+        html += `<tr><td>${row.name}</td><td>${row.text}</td></tr>`;
+      });
+      html += "</table>";
+      document.getElementById("stage1").innerHTML = html;
+    }
+
+    function renderStage2(data) {
+      let html = `<span class="badge">✅ ${data.rows} rows corrected</span>`;
+      html += "<table><tr><th>Speaker</th><th>Corrected Transcript</th></tr>";
+      data.sample.forEach(row => {
+        html += `<tr><td>${row.name}</td><td>${row.text}</td></tr>`;
+      });
+      html += "</table>";
+      document.getElementById("stage2").innerHTML = html;
+    }
+
+    function renderStage3(data) {
+      let html = `<span class="badge">✅ ${data.rows} rows enriched</span>`;
+      html += "<table><tr><th>Speaker</th><th>Words</th><th>Chars</th><th>Rate (wps)</th><th>Question</th><th>Turn</th></tr>";
+      data.sample.forEach(row => {
+        html += `<tr>
+          <td>${row.name}</td>
+          <td>${row.num_words}</td>
+          <td>${row.text_size_chars}</td>
+          <td>${row.speech_rate_wps}</td>
+          <td>${row.question_flag ? "✅" : "❌"}</td>
+          <td>${row.speaker_turn_id}</td>
+        </tr>`;
+      });
+      html += "</table>";
+      document.getElementById("stage3").innerHTML = html;
+    }
+
+    function renderStage4(data) {
+      let html = `<span class="badge">✅ Validation passed</span>`;
+      html += `<div class="metric-grid">
+        <div class="metric-card">
+          <div class="value">${data.total_speaking_time}s</div>
+          <div class="label">Total Speaking Time</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.avg_speaking_time}s</div>
+          <div class="label">Avg Speaking Time</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.questions_detected}</div>
+          <div class="label">Questions Detected</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.metrics.avg_length_change}</div>
+          <div class="label">Avg Length Change (chars)</div>
+        </div>
+      </div>`;
+
+      html += "<h3 style='margin-top:20px; color:#0d1b2a'>Speaker Statistics</h3>";
+      html += "<table><tr><th>Speaker</th><th>Turns</th><th>Raw Chars</th><th>Corrected Chars</th></tr>";
+      data.speaker_stats.forEach(row => {
+        html += `<tr>
+          <td>${row.name}</td>
+          <td>${row.total_turns}</td>
+          <td>${row.total_raw_chars}</td>
+          <td>${row.total_corr_chars}</td>
+        </tr>`;
+      });
+      html += "</table>";
+      document.getElementById("stage4").innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
