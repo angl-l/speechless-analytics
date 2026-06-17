@@ -1,0 +1,5 @@
+name,total_turns,total_raw_chars,total_corr_chars,avg_raw_length,avg_corr_length
+angela,7,255,257,36.43,36.71
+elena,7,294,294,42.0,42.0
+rihanna,6,245,247,40.83,41.17
+solomon,5,155,155,31.0,31.0
