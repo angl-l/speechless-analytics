@@ -1,7 +1,7 @@
-"""Simple Vosk example.
+"""Vosk is used to transcribe meetings
 
 This records from the microphone, transcribes speech with Vosk, prints the
-transcript, and saves it to transcript.txt.
+transcript, and saves it to transcript.csv.
 """
 
 import json
@@ -31,6 +31,8 @@ recognizer = KaldiRecognizer(model, SAMPLE_RATE)
 print("Start speaking. Press Ctrl+C to stop.")
 
 full_text = ""
+
+# records start time of transcription per row
 start= time.perf_counter()
 
 try:
@@ -54,7 +56,7 @@ try:
 except KeyboardInterrupt:
     print("\nStopped recording.")
 
-# Very important: get the final remaining text.
+
 final_result = json.loads(recognizer.FinalResult())
 final_text = final_result.get("text", "")
 
@@ -62,6 +64,7 @@ if final_text:
     print("Final:", final_text)
     full_text += final_text + " "
 
+# records end time of transcription per row
 end = time.perf_counter()
 
 timestamp = datetime.now().isoformat()
@@ -73,6 +76,7 @@ time_taken_sec = end - start
 with open(OUTPUT_FILE, "a", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
 
+    # if .csv empty, add header rows first and then add transcription
     if f.tell() == 0:
         writer.writerow(["timestamp", "name", "raw_script", "time_taken_sec"])
 
