@@ -21,7 +21,7 @@
     "sample": [
       {
         "name": "angela",
-        "text": "Welcome everyone we have five points to cover in the agenda."
+        "text": "Welcome everyone, we have five points to cover in the agenda."
       },
       {
         "name": "elena",
@@ -29,7 +29,7 @@
       },
       {
         "name": "rihanna",
-        "text": "Can we take this offline."
+        "text": "Can we take this offline?"
       }
     ]
   },
@@ -39,7 +39,7 @@
       {
         "name": "angela",
         "num_words": 11,
-        "text_size_chars": 60,
+        "text_size_chars": 61,
         "speech_rate_wps": 1.5,
         "question_flag": false,
         "speaker_turn_id": 1
@@ -57,8 +57,64 @@
         "num_words": 5,
         "text_size_chars": 25,
         "speech_rate_wps": 1.1,
+        "question_flag": true,
+        "speaker_turn_id": 1
+      },
+      {
+        "name": "solomon",
+        "num_words": 1,
+        "text_size_chars": 4,
+        "speech_rate_wps": 0.3,
         "question_flag": false,
         "speaker_turn_id": 1
+      },
+      {
+        "name": "angela",
+        "num_words": 5,
+        "text_size_chars": 22,
+        "speech_rate_wps": 1.0,
+        "question_flag": true,
+        "speaker_turn_id": 2
+      },
+      {
+        "name": "elena",
+        "num_words": 9,
+        "text_size_chars": 46,
+        "speech_rate_wps": 1.2,
+        "question_flag": false,
+        "speaker_turn_id": 2
+      },
+      {
+        "name": "solomon",
+        "num_words": 11,
+        "text_size_chars": 54,
+        "speech_rate_wps": 1.4,
+        "question_flag": false,
+        "speaker_turn_id": 2
+      },
+      {
+        "name": "rihanna",
+        "num_words": 5,
+        "text_size_chars": 32,
+        "speech_rate_wps": 0.8,
+        "question_flag": true,
+        "speaker_turn_id": 2
+      },
+      {
+        "name": "angela",
+        "num_words": 6,
+        "text_size_chars": 32,
+        "speech_rate_wps": 0.9,
+        "question_flag": false,
+        "speaker_turn_id": 3
+      },
+      {
+        "name": "elena",
+        "num_words": 5,
+        "text_size_chars": 22,
+        "speech_rate_wps": 0.9,
+        "question_flag": false,
+        "speaker_turn_id": 3
       }
     ]
   },
@@ -68,9 +124,9 @@
         "name": "angela",
         "total_turns": 7,
         "total_raw_chars": 255,
-        "total_corr_chars": 257,
+        "total_corr_chars": 258,
         "avg_raw_length": 36.43,
-        "avg_corr_length": 36.71
+        "avg_corr_length": 36.86
       },
       {
         "name": "elena",
@@ -84,9 +140,9 @@
         "name": "rihanna",
         "total_turns": 6,
         "total_raw_chars": 245,
-        "total_corr_chars": 247,
+        "total_corr_chars": 248,
         "avg_raw_length": 40.83,
-        "avg_corr_length": 41.17
+        "avg_corr_length": 41.33
       },
       {
         "name": "solomon",
@@ -99,10 +155,10 @@
     ],
     "metrics": {
       "avg_raw_chars": 37.96,
-      "avg_corr_chars": 38.12,
-      "avg_length_change": 0.16
+      "avg_corr_chars": 38.2,
+      "avg_length_change": 0.24
     },
-    "questions_detected": 0,
+    "questions_detected": 8,
     "total_speaking_time": 158.1,
     "avg_speaking_time": 6.3
   }

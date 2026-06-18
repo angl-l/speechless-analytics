@@ -139,7 +139,7 @@ def save_json(df_raw, df_corrected, df_enriched):
                     "question_flag": bool(row["question_flag"]),
                     "speaker_turn_id": int(row["speaker_turn_id"])
                 }
-                for _, row in df_enriched.head(3).iterrows()
+                for _, row in df_enriched.head(10).iterrows()
             ]
         },
         "stage4": {
