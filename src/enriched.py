@@ -2,8 +2,6 @@ import pandas as pd
 
 def enrich_data(enriched):
 
-    enriched = pd.read_csv('transcript_corrected.csv')                                     # load CSV file into a DataFrame.
-  
     test_enriched = enriched.copy()                       # a copy to try enrichment without changing the original dataframe.
 
     test_enriched["question_flag"] = test_enriched["text"].str.endswith('?')              # create col 1. question_flag
@@ -21,5 +19,5 @@ def enrich_data(enriched):
 if __name__ == "__main__":
     enriched = pd.read_csv('transcript_corrected.csv') # load CSV file into a DataFrame.
     enrichedTranscript = enrich_data(enriched) 
-    #print(enrichedTranscript)                                                              # for checking
+    print(enrichedTranscript)                                                              # for checking
 
