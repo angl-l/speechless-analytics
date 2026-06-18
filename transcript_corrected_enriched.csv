@@ -1,26 +1,26 @@
 timestamp,name,raw_script,text,time_taken_sec,question_flag,num_words,text_size_chars,speech_rate_wps,speaker_turn_id
-2026-06-03T20:30:13.263216,angela,welcome everyone we have five points to cover in the agenda ,Welcome everyone we have five points to cover in the agenda.,7.409076208001352,False,11,60,1.5,1
+2026-06-03T20:30:13.263216,angela,welcome everyone we have five points to cover in the agenda ,"Welcome everyone, we have five points to cover in the agenda.",7.409076208001352,False,11,61,1.5,1
 2026-06-03T20:30:31.447377,elena,we must bear in mind that this has already gone to production ,We must bear in mind that this has already gone to production.,7.385831999999937,False,12,62,1.6,1
-2026-06-03T20:31:07.770744,rihanna,can we take this offline ,Can we take this offline.,4.434844207993592,False,5,25,1.1,1
+2026-06-03T20:31:07.770744,rihanna,can we take this offline ,Can we take this offline?,4.434844207993592,True,5,25,1.1,1
 2026-06-03T20:41:16.406456,solomon,yes ,Yes.,3.9618746250052936,False,1,4,0.3,1
-2026-06-03T20:41:34.611664,angela,can you see my screen ,Can you see my screen.,5.180238458007807,False,5,22,1.0,2
+2026-06-03T20:41:34.611664,angela,can you see my screen ,Can you see my screen?,5.180238458007807,True,5,22,1.0,2
 2026-06-03T20:41:55.407750,elena,the client would like to add an extra feature ,The client would like to add an extra feature.,7.313018833010574,False,9,46,1.2,2
 2026-06-03T20:42:38.377897,solomon,i have spoken to the testing team and they can manage ,I have spoken to the testing team and they can manage.,7.985772084008204,False,11,54,1.4,2
-2026-06-03T20:42:59.662248,rihanna,has the supplier being informed ,Has the supplier being informed.,6.002581333988928,False,5,32,0.8,2
+2026-06-03T20:42:59.662248,rihanna,has the supplier being informed ,Has the supplier being informed?,6.002581333988928,True,5,32,0.8,2
 2026-06-03T20:43:27.770867,angela,the back end is almost complete ,The back end is almost complete.,6.440268333986751,False,6,32,0.9,3
 2026-06-03T20:43:45.679175,elena,surely it can be done ,Surely it can be done.,5.416888666004525,False,5,22,0.9,3
 2026-06-03T20:44:06.150698,rihanna,it is important we maintain confidentiality ,It is important we maintain confidentiality.,7.010475084010977,False,6,44,0.9,3
 2026-06-03T20:44:25.687832,angela,the feature went down last week but the issue was quickly resolved,The feature went down last week but the issue was quickly resolved.,9.132305708000786,False,12,67,1.3,4
-2026-06-03T20:44:44.590009,elena,is there any other business ,Is there any other business.,5.075048666985822,False,5,28,1.0,4
-2026-06-03T20:45:03.739561,rihanna,ben's on annual leave so it is best to contact jess,Ben's on annual leave so it is best to contact jess.,8.267942500009667,False,11,52,1.3,4
-2026-06-03T20:45:21.361111,solomon,was this added to the jira board ,Was this added to the jira board.,6.3677123749948805,False,7,33,1.1,3
+2026-06-03T20:44:44.590009,elena,is there any other business ,Is there any other business?,5.075048666985822,True,5,28,1.0,4
+2026-06-03T20:45:03.739561,rihanna,ben's on annual leave so it is best to contact jess,"Ben's on annual leave, so it is best to contact Jess.",8.267942500009667,False,11,53,1.3,4
+2026-06-03T20:45:21.361111,solomon,was this added to the jira board ,Was this added to the Jira board?,6.3677123749948805,True,7,33,1.1,3
 2026-06-03T20:45:47.266152,angela,we can add this task into our next sprint ,We can add this task into our next sprint.,7.086257250004564,False,9,42,1.3,5
 2026-06-03T20:46:01.092473,elena,i still think a waterfall approach would work best for this project ,I still think a waterfall approach would work best for this project.,7.821976958002779,False,12,68,1.5,5
-2026-06-03T20:46:19.197319,rihanna,does the budget allow for that to be implemented ,Does the budget allow for that to be implemented.,6.750430000000051,False,9,49,1.3,5
+2026-06-03T20:46:19.197319,rihanna,does the budget allow for that to be implemented ,Does the budget allow for that to be implemented?,6.750430000000051,True,9,49,1.3,5
 2026-06-03T20:46:39.373209,angela,i think so ,I think so.,4.7883647909911815,False,3,11,0.6,6
-2026-06-03T20:46:49.948264,solomon,do you have a copy of the documentation ,Do you have a copy of the documentation.,6.216915249999147,False,8,40,1.3,4
+2026-06-03T20:46:49.948264,solomon,do you have a copy of the documentation ,Do you have a copy of the documentation?,6.216915249999147,True,8,40,1.3,4
 2026-06-03T20:47:06.119064,elena,it is doable but of course this will increase costs ,It is doable but of course this will increase costs.,7.576329291987349,False,10,52,1.3,6
 2026-06-03T20:47:19.628579,rihanna,ticket number four seems to be quite delayed,Ticket number four seems to be quite delayed.,6.954884625010891,False,8,45,1.2,6
 2026-06-03T20:47:37.913628,angela,i think we can sort it,I think we can sort it.,5.220332374999998,False,6,23,1.1,7
 2026-06-03T20:47:49.743004,solomon,your mic is not working ,Your mic is not working.,4.540319209001609,False,5,24,1.1,5
-2026-06-03T20:47:58.957811,elena,can you hear me ,Can you hear me.,3.731482750008581,False,4,16,1.1,7
+2026-06-03T20:47:58.957811,elena,can you hear me ,Can you hear me?,3.731482750008581,True,4,16,1.1,7
