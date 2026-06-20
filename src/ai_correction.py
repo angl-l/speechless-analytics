@@ -34,7 +34,15 @@ def basic_corrections(text):
     text = text.strip()        # removes trailing spaces
     text = text[0].upper() + text[1:]  # capitalises first letter
     if text[-1] not in ".?!":
-        text += "."            # adds full stop if missing
+        question_words = ("can", "could", "is", "are", "was", "were",
+                         "has", "have", "had", "do", "does", "did",
+                         "will", "would", "should", "shall", "may",
+                         "might", "who", "what", "where", "when", "why", "how")
+        first_word = text.split()[0].lower()
+        if first_word in question_words:
+            text += "?"
+        else:
+            text += "."           # adds full stop if there is no question word
     return text
 
 # Build the prompt using the system prompt and the raw transcript
@@ -49,12 +57,12 @@ def AI_correct_transcript(prompt):
 def main():
     
     df = pd.read_csv(INPUT_CSV)
+    df["name"] = df["name"].str.strip().str.capitalize() 
     if "raw_script" not in df.columns:
         raise ValueError(f"Expected column 'raw_script' not found in {INPUT_CSV}.")
 
     corrected = []
     for i, row in df.iterrows():
-    # for i, row in df.iloc[:12].iterrows():
         raw = str(row["raw_script"])
         print(f"Correcting row {i + 1}/{len(df)}: {raw!r}")
         try:
