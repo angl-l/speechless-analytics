@@ -31,7 +31,7 @@ def show_stage1(df):
     # Print first 3 rows as a sample
     print("\nSample:")
     for i, row in df.head(3).iterrows():
-        print(" ", row["name"], "->", row["raw_script"].strip(), ",", row["time_taken_sec"])
+        print(" ", row["timestamp"], "|", row["name"], "->", row["raw_script"].strip(), "|", row["time_taken_sec"])
 
 
 
@@ -44,7 +44,7 @@ def show_stage2(df):
     # Print first 3 rows as a sample
     print("\nSample:")
     for i, row in df.head(3).iterrows():
-        print(" ", row["name"], "->", row["raw_script"].strip(), "->", row["text"].strip(), ",", round(float(row["time_taken_sec"]),2))
+        print(" ", row["timestamp"], "|", row["name"], "->", row["raw_script"].strip(), "->", row["text"].strip(), ",", round(float(row["time_taken_sec"]),2))
 
 
 
@@ -57,7 +57,8 @@ def show_stage3(df):
     # Print first 5 rows as a sample
     print("\nSample:")
     for i, row in df.head(5).iterrows():
-        print(" ", row["name"],
+        print(" ", row["timestamp"], "|", row["name"],
+              "| Raw Script:", row["raw_script"].strip(),
               "| Text:", row["text"].strip(),
               "| Time(Sec):", round(float(row["time_taken_sec"]),2),
               "| question:", row["question_flag"],
