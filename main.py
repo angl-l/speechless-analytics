@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 import pandas as pd
 
-
+# File paths for each stage output
 FILE_RAW = Path("transcript.csv")
 FILE_CORRECTED = Path("transcript_corrected.csv")
 FILE_ENRICHED = Path("transcript_corrected_enriched.csv")
@@ -21,154 +21,158 @@ FILE_METRICS = Path("analysis_metrics_summary.csv")
 OUTPUT_JSON = Path("pipeline_results.json")
 
 
-def show_stage1():
+def show_stage1(df):
     print("\n" + "="*50)
     print(" STAGE 1: Speech Transcription (Vosk)")
     print("="*50)
+    print("transcript.csv found -", len(df), "rows")
 
-    if not FILE_RAW.exists():
-        print("❌ transcript.csv not found")
-        return None
-
-    df = pd.read_csv(FILE_RAW)
-    print(f"✅ transcript.csv found — {len(df)} rows")
+    # Print first 3 rows as a sample
     print("\nSample:")
-    for _, row in df.head(3).iterrows():
-        print(f"  {row['name']:<10} →  {row['raw_script'].strip()}")
-    return df
+    for i, row in df.head(3).iterrows():
+        print(" ", row["name"], "->", row["raw_script"].strip(), ",", row["time_taken_sec"])
 
 
-def show_stage2():
+
+def show_stage2(df):
     print("\n" + "="*50)
     print(" STAGE 2: AI Correction (Gemini)")
     print("="*50)
+    print("transcript_corrected.csv found -", len(df), "rows")
 
-    if not FILE_CORRECTED.exists():
-        print("❌ transcript_corrected.csv not found")
-        return None
-
-    df = pd.read_csv(FILE_CORRECTED)
-    print(f"✅ transcript_corrected.csv found — {len(df)} rows")
+    # Print first 3 rows as a sample
     print("\nSample:")
-    for _, row in df.head(3).iterrows():
-        print(f"  {row['name']:<10} →  {row['text'].strip()}")
-    return df
+    for i, row in df.head(3).iterrows():
+        print(" ", row["name"], "->", row["raw_script"].strip(), "->", row["text"].strip(), ",", round(float(row["time_taken_sec"]),2))
 
 
-def show_stage3():
+
+def show_stage3(df):
     print("\n" + "="*50)
     print(" STAGE 3: Enrichment")
     print("="*50)
-
-    if not FILE_ENRICHED.exists():
-        print("❌ transcript_corrected_enriched.csv not found")
-        return None
-
-    df = pd.read_csv(FILE_ENRICHED)
-    print(f"✅ transcript_corrected_enriched.csv found — {len(df)} rows")
+    print("transcript_corrected_enriched.csv found -", len(df), "rows")
+    
+    # Print first 5 rows as a sample
     print("\nSample:")
-    for _, row in df.head(3).iterrows():
-        print(f"  {row['name']:<10} | words: {row['num_words']:>2} | chars: {row['text_size_chars']:>3} | rate: {row['speech_rate_wps']} wps | question: {str(row['question_flag']):<5} | turn: {row['speaker_turn_id']}")
-    return df
+    for i, row in df.head(5).iterrows():
+        print(" ", row["name"],
+              "| Text:", row["text"].strip(),
+              "| Time(Sec):", round(float(row["time_taken_sec"]),2),
+              "| question:", row["question_flag"],
+              "| words:", row["num_words"],
+              "| chars:", row["text_size_chars"],
+              "| rate:", row["speech_rate_wps"], "wps",
+              "| turn:", row["speaker_turn_id"])
 
 
-def show_stage4(df_enriched):
+def show_stage4(df_enriched, speaker_stats, metrics):
     print("\n" + "="*50)
     print(" STAGE 4: Validation & Analysis")
     print("="*50)
+    print("All validation checks passed")
 
-    if not FILE_SPEAKER_STATS.exists() or not FILE_METRICS.exists():
-        print("❌ Analysis files not found — run validation.py first")
-        return
+   # Print speaker statistics
+    print("\nSPEAKER STATISTICS")
+    for i, row in speaker_stats.iterrows():
+        print(" ", row["name"], "-",
+              row["total_turns"], "turns |",
+              row["total_raw_chars"], "raw chars |",
+              row["total_corr_chars"], "corrected chars |",
+              row["avg_raw_length"], "avg raw length |",
+              row["avg_corr_length"], "avg corrected length")
+        
+    # Print overall metrics
+    print("\nMETRICS SUMMARY")
+    print("  Avg raw chars:       ", metrics["avg_raw_chars"][0])
+    print("  Avg corrected chars: ", metrics["avg_corr_chars"][0])
+    print("  Avg length change:   ", metrics["avg_length_change"][0])
 
-    print("✅ All validation checks passed")
-
-    # Speaker stats
-    speaker_stats = pd.read_csv(FILE_SPEAKER_STATS)
-    print("\n📌 SPEAKER STATISTICS")
-    for _, row in speaker_stats.iterrows():
-        print(f"  {row['name']:<10} — {row['total_turns']} turns | {row['total_raw_chars']} raw chars | {row['total_corr_chars']} corrected chars")
-
-    # Metrics summary
-    metrics = pd.read_csv(FILE_METRICS)
-    print("\n📌 OVERALL METRICS")
-    print(f"  Avg raw chars:        {metrics['avg_raw_chars'][0]}")
-    print(f"  Avg corrected chars:  {metrics['avg_corr_chars'][0]}")
-    print(f"  Avg length change:    {metrics['avg_length_change'][0]}")
-
-    # Enriched extras
-    if df_enriched is not None:
-        print("\n📌 ENRICHED METRICS")
-        print(f"  Questions detected:   {df_enriched['question_flag'].sum()}")
-        print(f"  Max speaker turns:    {df_enriched['speaker_turn_id'].max()}")
-        print(f"  Total speaking time:  {df_enriched['time_taken_sec'].sum():.1f} seconds")
-        print(f"  Avg speaking time:    {df_enriched['time_taken_sec'].mean():.1f} seconds")
-
-    return speaker_stats, metrics
+    # Print enriched metrics
+    print("\nENRICHED METRICS")
+    print("  Questions detected:  ", df_enriched["question_flag"].sum())
+    print("  Max speaker turns:   ", df_enriched["speaker_turn_id"].max())
+    print("  Total speaking time: ", round(df_enriched["time_taken_sec"].sum(), 2), "seconds")
+    print("  Avg speaking time:   ", round(df_enriched["time_taken_sec"].mean(), 2), "seconds")
 
 
-def save_json(df_raw, df_corrected, df_enriched):
-    """Save all results to JSON for the UI."""
+def save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics):
+    
+    # Build stage 1 sample list — include timestamp, name, raw transcript and time
+    stage1_sample = []
+    for i, row in df_raw.head(3).iterrows():
+        stage1_sample.append({
+            "timestamp": row["timestamp"],
+            "name": row["name"],
+            "text": row["raw_script"].strip(),
+            "time_taken_sec": round(float(row["time_taken_sec"]), 2)
+        })
 
-    speaker_stats = pd.read_csv(FILE_SPEAKER_STATS) if FILE_SPEAKER_STATS.exists() else None
-    metrics = pd.read_csv(FILE_METRICS) if FILE_METRICS.exists() else None
+    # Build stage 2 sample list — include timestamp, name, raw, corrected and time
+    stage2_sample = []
+    for i, row in df_corrected.head(3).iterrows():
+        stage2_sample.append({
+            "timestamp": row["timestamp"],
+            "name": row["name"],
+            "raw_script": row["raw_script"].strip(),
+            "text": row["text"].strip(),
+            "time_taken_sec": round(float(row["time_taken_sec"]), 2)
+        })
 
+    # Build stage 3 sample list — include timestamp, name, text, time, question, words, chars, rate
+    stage3_sample = []
+    for i, row in df_enriched.head(5).iterrows():
+        stage3_sample.append({
+            "timestamp": row["timestamp"],
+            "name": row["name"],
+            "text": row["text"].strip(),
+            "time_taken_sec": round(float(row["time_taken_sec"]), 2),
+            "question_flag": bool(row["question_flag"]),
+            "num_words": int(row["num_words"]),
+            "text_size_chars": int(row["text_size_chars"]),
+            "speech_rate_wps": float(row["speech_rate_wps"])
+        })
+                
+    # Put everything together in one dictionary
     results = {
-        "stage1": {
-            "rows": len(df_raw),
-            "sample": [
-                {"name": row["name"], "text": row["raw_script"].strip()}
-                for _, row in df_raw.head(3).iterrows()
-            ]
-        },
-        "stage2": {
-            "rows": len(df_corrected),
-            "sample": [
-                {"name": row["name"], "text": row["text"].strip()}
-                for _, row in df_corrected.head(3).iterrows()
-            ]
-        },
-        "stage3": {
-            "rows": len(df_enriched),
-            "sample": [
-                {
-                    "name": row["name"],
-                    "num_words": int(row["num_words"]),
-                    "text_size_chars": int(row["text_size_chars"]),
-                    "speech_rate_wps": float(row["speech_rate_wps"]),
-                    "question_flag": bool(row["question_flag"]),
-                    "speaker_turn_id": int(row["speaker_turn_id"])
-                }
-                for _, row in df_enriched.head(10).iterrows()
-            ]
-        },
+        "stage1": {"rows": len(df_raw), "sample": stage1_sample},
+        "stage2": {"rows": len(df_corrected), "sample": stage2_sample},
+        "stage3": {"rows": len(df_enriched), "sample": stage3_sample},
         "stage4": {
-            "speaker_stats": speaker_stats.to_dict(orient="records") if speaker_stats is not None else [],
-            "metrics": metrics.to_dict(orient="records")[0] if metrics is not None else {},
+            "speaker_stats": speaker_stats.to_dict(orient="records"),
+            "metrics": metrics.to_dict(orient="records")[0],
             "questions_detected": int(df_enriched["question_flag"].sum()),
             "total_speaking_time": round(float(df_enriched["time_taken_sec"].sum()), 1),
             "avg_speaking_time": round(float(df_enriched["time_taken_sec"].mean()), 1)
         }
     }
 
+    # Save to JSON file for the UI
     with open(OUTPUT_JSON, "w") as f:
         json.dump(results, f, indent=2)
 
-    print(f"\n✅ Results saved to {OUTPUT_JSON} for the UI")
-
+    print("\nResults saved to", OUTPUT_JSON, "for the UI")
 
 if __name__ == "__main__":
     print("\n" + "="*50)
     print(" MEETING SPEECH ANALYTICS PIPELINE")
     print("="*50)
 
-    df_raw = show_stage1()
-    df_corrected = show_stage2()
-    df_enriched = show_stage3()
-    show_stage4(df_enriched)
+    # Load all CSV files once
+    df_raw = pd.read_csv(FILE_RAW)
+    df_corrected = pd.read_csv(FILE_CORRECTED)
+    df_enriched = pd.read_csv(FILE_ENRICHED)
+    speaker_stats = pd.read_csv(FILE_SPEAKER_STATS)
+    metrics = pd.read_csv(FILE_METRICS)
 
-    if df_raw is not None and df_corrected is not None and df_enriched is not None:
-        save_json(df_raw, df_corrected, df_enriched)
+    # Run each stage
+    show_stage1(df_raw)
+    show_stage2(df_corrected)
+    show_stage3(df_enriched)
+    show_stage4(df_enriched, speaker_stats, metrics)
+
+    # Save results to JSON for the UI
+    save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics)
 
     print("\n" + "="*50)
     print(" PIPELINE COMPLETE")

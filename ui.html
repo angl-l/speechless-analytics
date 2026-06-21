@@ -176,22 +176,22 @@
 
   <!-- Stages -->
   <div class="stage">
-    <h2>🎙️ Stage 1 — Speech Transcription (Vosk)</h2>
+    <h2>🎙️ Stage 1 : Speech Transcription (Vosk)</h2>
     <div id="stage1">Loading...</div>
   </div>
 
   <div class="stage">
-    <h2>🤖 Stage 2 — AI Correction (Gemini)</h2>
+    <h2>🤖 Stage 2 : AI Correction (Gemini)</h2>
     <div id="stage2">Loading...</div>
   </div>
 
   <div class="stage">
-    <h2>📊 Stage 3 — Enrichment</h2>
+    <h2>📊 Stage 3 : Enrichment</h2>
     <div id="stage3">Loading...</div>
   </div>
 
   <div class="stage">
-    <h2>✅ Stage 4 — Validation & Analysis</h2>
+    <h2>✅ Stage 4 : Validation & Analysis</h2>
     <div id="stage4">Loading...</div>
   </div>
 
@@ -213,36 +213,58 @@
       });
 
     function renderStage1(data) {
+      // Show number of transcribed rows in the badge
       let html = `<span class="badge">✅ ${data.rows} rows transcribed</span>`;
-      html += "<table><tr><th>Speaker</th><th>Raw Transcript</th></tr>";
+      // Table header — timestamp added as first column
+      html += "<table><tr><th>Timestamp</th><th>Speaker</th><th>Raw Transcript</th><th>Time (sec)</th></tr>";
+      // Loop through sample rows and display timestamp, name, transcript and time
       data.sample.forEach(row => {
-        html += `<tr><td>${row.name}</td><td>${row.text}</td></tr>`;
+        html += `<tr>
+          <td>${row.timestamp}</td>
+          <td>${row.name}</td>
+          <td>${row.text}</td>
+          <td>${row.time_taken_sec}</td>
+        </tr>`;
       });
       html += "</table>";
       document.getElementById("stage1").innerHTML = html;
     }
 
     function renderStage2(data) {
+      // Show number of corrected rows in the badge
       let html = `<span class="badge">✅ ${data.rows} rows corrected</span>`;
-      html += "<table><tr><th>Speaker</th><th>Corrected Transcript</th></tr>";
+      // Table header — timestamp added as first column
+      html += "<table><tr><th>Timestamp</th><th>Speaker</th><th>Raw Transcript</th><th>Corrected Transcript</th><th>Time (sec)</th></tr>";
+      // Loop through each sample row and display timestamp, raw, corrected and time
       data.sample.forEach(row => {
-        html += `<tr><td>${row.name}</td><td>${row.text}</td></tr>`;
+        html += `<tr>
+          <td>${row.timestamp}</td>
+          <td>${row.name}</td>
+          <td>${row.raw_script}</td>
+          <td>${row.text}</td>
+          <td>${row.time_taken_sec}</td>
+        </tr>`;
       });
       html += "</table>";
       document.getElementById("stage2").innerHTML = html;
     }
 
     function renderStage3(data) {
+      // Show number of enriched rows in the badge
       let html = `<span class="badge">✅ ${data.rows} rows enriched</span>`;
-      html += "<table><tr><th>Speaker</th><th>Words</th><th>Chars</th><th>Rate (wps)</th><th>Question</th><th>Turn</th></tr>";
+      // Table header — timestamp, name, text, time, question, words, chars, rate
+      html += "<table><tr><th>Timestamp</th><th>Speaker</th><th>Text</th><th>Time (sec)</th><th>Question</th><th>Words</th><th>Chars</th><th>Rate (wps)</th></tr>";
+      // Loop through each sample row in the correct column order
       data.sample.forEach(row => {
         html += `<tr>
+          <td>${row.timestamp}</td>
           <td>${row.name}</td>
+          <td>${row.text}</td>
+          <td>${row.time_taken_sec}</td>
+          <td>${row.question_flag ? "✅" : "❌"}</td>
           <td>${row.num_words}</td>
           <td>${row.text_size_chars}</td>
           <td>${row.speech_rate_wps}</td>
-          <td>${row.question_flag ? "✅" : "❌"}</td>
-          <td>${row.speaker_turn_id}</td>
         </tr>`;
       });
       html += "</table>";
@@ -271,13 +293,17 @@
       </div>`;
 
       html += "<h3 style='margin-top:20px; color:#0d1b2a'>Speaker Statistics</h3>";
-      html += "<table><tr><th>Speaker</th><th>Turns</th><th>Raw Chars</th><th>Corrected Chars</th></tr>";
+      // Table header — added avg raw length and avg corrected length columns
+      html += "<table><tr><th>Speaker</th><th>Turns</th><th>Raw Chars</th><th>Corrected Chars</th><th>Avg Raw Length</th><th>Avg Corrected Length</th></tr>";
+      // Loop through each speaker and display all stats
       data.speaker_stats.forEach(row => {
         html += `<tr>
           <td>${row.name}</td>
           <td>${row.total_turns}</td>
           <td>${row.total_raw_chars}</td>
           <td>${row.total_corr_chars}</td>
+          <td>${row.avg_raw_length}</td>
+          <td>${row.avg_corr_length}</td>
         </tr>`;
       });
       html += "</table>";

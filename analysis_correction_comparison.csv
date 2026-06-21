@@ -1,26 +1,26 @@
 timestamp,name,raw_script,text,time_taken_sec,raw_words,corr_words,changed,len_diff
-2026-06-03T20:30:13.263216,angela,welcome everyone we have five points to cover in the agenda ,"Welcome everyone, we have five points to cover in the agenda.",7.409076208001352,11,11,True,1
-2026-06-03T20:30:31.447377,elena,we must bear in mind that this has already gone to production ,We must bear in mind that this has already gone to production.,7.385831999999937,12,12,True,0
-2026-06-03T20:31:07.770744,rihanna,can we take this offline ,Can we take this offline?,4.434844207993592,5,5,True,0
-2026-06-03T20:41:16.406456,solomon,yes ,Yes.,3.9618746250052936,1,1,True,0
-2026-06-03T20:41:34.611664,angela,can you see my screen ,Can you see my screen?,5.180238458007807,5,5,True,0
-2026-06-03T20:41:55.407750,elena,the client would like to add an extra feature ,The client would like to add an extra feature.,7.313018833010574,9,9,True,0
-2026-06-03T20:42:38.377897,solomon,i have spoken to the testing team and they can manage ,I have spoken to the testing team and they can manage.,7.985772084008204,11,11,True,0
-2026-06-03T20:42:59.662248,rihanna,has the supplier being informed ,Has the supplier being informed?,6.002581333988928,5,5,True,0
-2026-06-03T20:43:27.770867,angela,the back end is almost complete ,The back end is almost complete.,6.440268333986751,6,6,True,0
-2026-06-03T20:43:45.679175,elena,surely it can be done ,Surely it can be done.,5.416888666004525,5,5,True,0
-2026-06-03T20:44:06.150698,rihanna,it is important we maintain confidentiality ,It is important we maintain confidentiality.,7.010475084010977,6,6,True,0
-2026-06-03T20:44:25.687832,angela,the feature went down last week but the issue was quickly resolved,The feature went down last week but the issue was quickly resolved.,9.132305708000786,12,12,True,1
-2026-06-03T20:44:44.590009,elena,is there any other business ,Is there any other business?,5.075048666985822,5,5,True,0
-2026-06-03T20:45:03.739561,rihanna,ben's on annual leave so it is best to contact jess,"Ben's on annual leave, so it is best to contact Jess.",8.267942500009667,11,11,True,2
-2026-06-03T20:45:21.361111,solomon,was this added to the jira board ,Was this added to the Jira board?,6.3677123749948805,7,7,True,0
-2026-06-03T20:45:47.266152,angela,we can add this task into our next sprint ,We can add this task into our next sprint.,7.086257250004564,9,9,True,0
-2026-06-03T20:46:01.092473,elena,i still think a waterfall approach would work best for this project ,I still think a waterfall approach would work best for this project.,7.821976958002779,12,12,True,0
-2026-06-03T20:46:19.197319,rihanna,does the budget allow for that to be implemented ,Does the budget allow for that to be implemented?,6.750430000000051,9,9,True,0
-2026-06-03T20:46:39.373209,angela,i think so ,I think so.,4.7883647909911815,3,3,True,0
-2026-06-03T20:46:49.948264,solomon,do you have a copy of the documentation ,Do you have a copy of the documentation?,6.216915249999147,8,8,True,0
-2026-06-03T20:47:06.119064,elena,it is doable but of course this will increase costs ,It is doable but of course this will increase costs.,7.576329291987349,10,10,True,0
-2026-06-03T20:47:19.628579,rihanna,ticket number four seems to be quite delayed,Ticket number four seems to be quite delayed.,6.954884625010891,8,8,True,1
-2026-06-03T20:47:37.913628,angela,i think we can sort it,I think we can sort it.,5.220332374999998,6,6,True,1
-2026-06-03T20:47:49.743004,solomon,your mic is not working ,Your mic is not working.,4.540319209001609,5,5,True,0
-2026-06-03T20:47:58.957811,elena,can you hear me ,Can you hear me?,3.731482750008581,4,4,True,0
+2026-06-03T20:30:13.263216,Angela,welcome everyone we have five points to cover in the agenda ,"Welcome, everyone, we have five points to cover in the agenda.",7.409076208001352,11,11,True,2
+2026-06-03T20:30:31.447377,Elena,we must bear in mind that this has already gone to production ,We must bear in mind that this has already gone to production.,7.385831999999937,12,12,True,0
+2026-06-03T20:31:07.770744,Rihanna,can we take this offline ,Can we take this offline?,4.434844207993592,5,5,True,0
+2026-06-03T20:41:16.406456,Solomon,yes ,Yes.,3.9618746250052936,1,1,True,0
+2026-06-03T20:41:34.611664,Angela,can you see my screen ,Can you see my screen?,5.180238458007807,5,5,True,0
+2026-06-03T20:41:55.407750,Elena,the client would like to add an extra feature ,The client would like to add an extra feature.,7.313018833010574,9,9,True,0
+2026-06-03T20:42:38.377897,Solomon,i have spoken to the testing team and they can manage ,I have spoken to the testing team and they can manage.,7.985772084008204,11,11,True,0
+2026-06-03T20:42:59.662248,Rihanna,has the supplier being informed ,Has the supplier been informed?,6.002581333988928,5,5,True,-1
+2026-06-03T20:43:27.770867,Angela,the back end is almost complete ,The back end is almost complete.,6.440268333986751,6,6,True,0
+2026-06-03T20:43:45.679175,Elena,surely it can be done ,Surely it can be done.,5.416888666004525,5,5,True,0
+2026-06-03T20:44:06.150698,Rihanna,it is important we maintain confidentiality ,It is important we maintain confidentiality.,7.010475084010977,6,6,True,0
+2026-06-03T20:44:25.687832,Angela,the feature went down last week but the issue was quickly resolved,"The feature went down last week, but the issue was quickly resolved.",9.132305708000786,12,12,True,2
+2026-06-03T20:44:44.590009,Elena,is there any other business ,Is there any other business?,5.075048666985822,5,5,True,0
+2026-06-03T20:45:03.739561,Rihanna,ben's on annual leave so it is best to contact jess,Ben's on annual leave so it is best to contact Jess.,8.267942500009667,11,11,True,1
+2026-06-03T20:45:21.361111,Solomon,was this added to the jira board ,Was this added to the Jira board?,6.3677123749948805,7,7,True,0
+2026-06-03T20:45:47.266152,Angela,we can add this task into our next sprint ,We can add this task into our next sprint.,7.086257250004564,9,9,True,0
+2026-06-03T20:46:01.092473,Elena,i still think a waterfall approach would work best for this project ,I still think a waterfall approach would work best for this project.,7.821976958002779,12,12,True,0
+2026-06-03T20:46:19.197319,Rihanna,does the budget allow for that to be implemented ,Does the budget allow for that to be implemented?,6.750430000000051,9,9,True,0
+2026-06-03T20:46:39.373209,Angela,i think so ,I think so.,4.7883647909911815,3,3,True,0
+2026-06-03T20:46:49.948264,Solomon,do you have a copy of the documentation ,Do you have a copy of the documentation?,6.216915249999147,8,8,True,0
+2026-06-03T20:47:06.119064,Elena,it is doable but of course this will increase costs ,It is doable but of course this will increase costs.,7.576329291987349,10,10,True,0
+2026-06-03T20:47:19.628579,Rihanna,ticket number four seems to be quite delayed,Ticket number four seems to be quite delayed.,6.954884625010891,8,8,True,1
+2026-06-03T20:47:37.913628,Angela,i think we can sort it,I think we can sort it.,5.220332374999998,6,6,True,1
+2026-06-03T20:47:49.743004,Solomon,your mic is not working ,Your mic is not working.,4.540319209001609,5,5,True,0
+2026-06-03T20:47:58.957811,Elena,can you hear me ,Can you hear me?,3.731482750008581,4,4,True,0

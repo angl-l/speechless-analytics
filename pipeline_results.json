@@ -3,16 +3,22 @@
     "rows": 25,
     "sample": [
       {
+        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "angela",
-        "text": "welcome everyone we have five points to cover in the agenda"
+        "text": "welcome everyone we have five points to cover in the agenda",
+        "time_taken_sec": 7.41
       },
       {
+        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "elena",
-        "text": "we must bear in mind that this has already gone to production"
+        "text": "we must bear in mind that this has already gone to production",
+        "time_taken_sec": 7.39
       },
       {
+        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "rihanna",
-        "text": "can we take this offline"
+        "text": "can we take this offline",
+        "time_taken_sec": 4.43
       }
     ]
   },
@@ -20,16 +26,25 @@
     "rows": 25,
     "sample": [
       {
-        "name": "angela",
-        "text": "Welcome everyone, we have five points to cover in the agenda."
+        "timestamp": "2026-06-03T20:30:13.263216",
+        "name": "Angela",
+        "raw_script": "welcome everyone we have five points to cover in the agenda",
+        "text": "Welcome, everyone, we have five points to cover in the agenda.",
+        "time_taken_sec": 7.41
       },
       {
-        "name": "elena",
-        "text": "We must bear in mind that this has already gone to production."
+        "timestamp": "2026-06-03T20:30:31.447377",
+        "name": "Elena",
+        "raw_script": "we must bear in mind that this has already gone to production",
+        "text": "We must bear in mind that this has already gone to production.",
+        "time_taken_sec": 7.39
       },
       {
-        "name": "rihanna",
-        "text": "Can we take this offline?"
+        "timestamp": "2026-06-03T20:31:07.770744",
+        "name": "Rihanna",
+        "raw_script": "can we take this offline",
+        "text": "Can we take this offline?",
+        "time_taken_sec": 4.43
       }
     ]
   },
@@ -37,99 +52,69 @@
     "rows": 25,
     "sample": [
       {
-        "name": "angela",
-        "num_words": 11,
-        "text_size_chars": 61,
-        "speech_rate_wps": 1.5,
+        "timestamp": "2026-06-03T20:30:13.263216",
+        "name": "Angela",
+        "text": "Welcome, everyone, we have five points to cover in the agenda.",
+        "time_taken_sec": 7.41,
         "question_flag": false,
-        "speaker_turn_id": 1
+        "num_words": 11,
+        "text_size_chars": 62,
+        "speech_rate_wps": 1.5
       },
       {
-        "name": "elena",
+        "timestamp": "2026-06-03T20:30:31.447377",
+        "name": "Elena",
+        "text": "We must bear in mind that this has already gone to production.",
+        "time_taken_sec": 7.39,
+        "question_flag": false,
         "num_words": 12,
         "text_size_chars": 62,
-        "speech_rate_wps": 1.6,
-        "question_flag": false,
-        "speaker_turn_id": 1
+        "speech_rate_wps": 1.6
       },
       {
-        "name": "rihanna",
+        "timestamp": "2026-06-03T20:31:07.770744",
+        "name": "Rihanna",
+        "text": "Can we take this offline?",
+        "time_taken_sec": 4.43,
+        "question_flag": true,
         "num_words": 5,
         "text_size_chars": 25,
-        "speech_rate_wps": 1.1,
-        "question_flag": true,
-        "speaker_turn_id": 1
+        "speech_rate_wps": 1.1
       },
       {
-        "name": "solomon",
+        "timestamp": "2026-06-03T20:41:16.406456",
+        "name": "Solomon",
+        "text": "Yes.",
+        "time_taken_sec": 3.96,
+        "question_flag": false,
         "num_words": 1,
         "text_size_chars": 4,
-        "speech_rate_wps": 0.3,
-        "question_flag": false,
-        "speaker_turn_id": 1
+        "speech_rate_wps": 0.3
       },
       {
-        "name": "angela",
+        "timestamp": "2026-06-03T20:41:34.611664",
+        "name": "Angela",
+        "text": "Can you see my screen?",
+        "time_taken_sec": 5.18,
+        "question_flag": true,
         "num_words": 5,
         "text_size_chars": 22,
-        "speech_rate_wps": 1.0,
-        "question_flag": true,
-        "speaker_turn_id": 2
-      },
-      {
-        "name": "elena",
-        "num_words": 9,
-        "text_size_chars": 46,
-        "speech_rate_wps": 1.2,
-        "question_flag": false,
-        "speaker_turn_id": 2
-      },
-      {
-        "name": "solomon",
-        "num_words": 11,
-        "text_size_chars": 54,
-        "speech_rate_wps": 1.4,
-        "question_flag": false,
-        "speaker_turn_id": 2
-      },
-      {
-        "name": "rihanna",
-        "num_words": 5,
-        "text_size_chars": 32,
-        "speech_rate_wps": 0.8,
-        "question_flag": true,
-        "speaker_turn_id": 2
-      },
-      {
-        "name": "angela",
-        "num_words": 6,
-        "text_size_chars": 32,
-        "speech_rate_wps": 0.9,
-        "question_flag": false,
-        "speaker_turn_id": 3
-      },
-      {
-        "name": "elena",
-        "num_words": 5,
-        "text_size_chars": 22,
-        "speech_rate_wps": 0.9,
-        "question_flag": false,
-        "speaker_turn_id": 3
+        "speech_rate_wps": 1.0
       }
     ]
   },
   "stage4": {
     "speaker_stats": [
       {
-        "name": "angela",
+        "name": "Angela",
         "total_turns": 7,
         "total_raw_chars": 255,
-        "total_corr_chars": 258,
+        "total_corr_chars": 260,
         "avg_raw_length": 36.43,
-        "avg_corr_length": 36.86
+        "avg_corr_length": 37.14
       },
       {
-        "name": "elena",
+        "name": "Elena",
         "total_turns": 7,
         "total_raw_chars": 294,
         "total_corr_chars": 294,
@@ -137,15 +122,15 @@
         "avg_corr_length": 42.0
       },
       {
-        "name": "rihanna",
+        "name": "Rihanna",
         "total_turns": 6,
         "total_raw_chars": 245,
-        "total_corr_chars": 248,
+        "total_corr_chars": 246,
         "avg_raw_length": 40.83,
-        "avg_corr_length": 41.33
+        "avg_corr_length": 41.0
       },
       {
-        "name": "solomon",
+        "name": "Solomon",
         "total_turns": 5,
         "total_raw_chars": 155,
         "total_corr_chars": 155,
