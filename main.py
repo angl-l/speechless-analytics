@@ -18,6 +18,7 @@ FILE_CORRECTED = Path("transcript_corrected.csv")
 FILE_ENRICHED = Path("transcript_corrected_enriched.csv")
 FILE_SPEAKER_STATS = Path("analysis_speaker_stats.csv")
 FILE_METRICS = Path("analysis_metrics_summary.csv")
+FILE_SPEAKER_DETAILS = Path("analysis_speaker_details.csv")
 OUTPUT_JSON = Path("pipeline_results.json")
 
 
@@ -66,37 +67,48 @@ def show_stage3(df):
               "| turn:", row["speaker_turn_id"])
 
 
-def show_stage4(df_enriched, speaker_stats, metrics):
+def show_stage4(speaker_stats, metrics, speaker_details):
     print("\n" + "="*50)
     print(" STAGE 4: Validation & Analysis")
     print("="*50)
-    print("All validation checks passed")
+
+    # Read validation results and show summary
+    validation_results = pd.read_csv("validation_results.csv")
+    total_rows = len(validation_results)
+    passed = len(validation_results[validation_results["status"] == "PASS"])
+    failed = total_rows - passed
+
+    print("Validation results: ", passed, "passed,", failed, "failed out of", total_rows, "rows")
 
    # Print speaker statistics
     print("\nSPEAKER STATISTICS")
     for i, row in speaker_stats.iterrows():
         print(" ", row["name"], "-",
               row["total_turns"], "turns |",
-              row["total_raw_chars"], "raw chars |",
-              row["total_corr_chars"], "corrected chars |",
-              row["avg_raw_length"], "avg raw length |",
-              row["avg_corr_length"], "avg corrected length")
+              row["total_words"], "words |",
+              row["total_raw_chars"], "Characters |",
+              row["total_corr_chars"], "Corrected Characters |",
+              row["total_time"], "seconds |",
+              row["total_questions"], "questions |",
+              row["avg_speech_rate"], "wps")
         
     # Print overall metrics
     print("\nMETRICS SUMMARY")
-    print("  Avg raw chars:       ", metrics["avg_raw_chars"][0])
-    print("  Avg corrected chars: ", metrics["avg_corr_chars"][0])
-    print("  Avg length change:   ", metrics["avg_length_change"][0])
+    print("  Total raws:        ", metrics["total_rows"][0])
+    print("  Total speaking time:  ", metrics["total_speaking_time_sec"][0], "seconds")
+    print("  Avg speaking time:    ", metrics["avg_speaking_time_per_speaker_sec"][0], "seconds")
+    print("  Avg raw chars:        ", metrics["avg_raw_chars"][0])
+    print("  Avg corrected chars:  ", metrics["avg_corrected_chars"][0])
+    print("  Avg length change:    ", metrics["avg_length_change"][0])
+    print("  Total questions:      ", metrics["total_questions"][0])
 
-    # Print enriched metrics
-    print("\nENRICHED METRICS")
-    print("  Questions detected:  ", df_enriched["question_flag"].sum())
-    print("  Max speaker turns:   ", df_enriched["speaker_turn_id"].max())
-    print("  Total speaking time: ", round(df_enriched["time_taken_sec"].sum(), 2), "seconds")
-    print("  Avg speaking time:   ", round(df_enriched["time_taken_sec"].mean(), 2), "seconds")
+    # Load and print speaker details analysis
+    print("\nANALYSIS")
+    for i, row in speaker_details.iterrows():
+        print(" ", row["metric"], "-", row["name"], "-", row["value"])
 
 
-def save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics):
+def save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics, speaker_details):
     
     # Build stage 1 sample list — include timestamp, name, raw transcript and time
     stage1_sample = []
@@ -140,10 +152,8 @@ def save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics):
         "stage3": {"rows": len(df_enriched), "sample": stage3_sample},
         "stage4": {
             "speaker_stats": speaker_stats.to_dict(orient="records"),
+            "speaker_details": speaker_details.to_dict(orient="records"),
             "metrics": metrics.to_dict(orient="records")[0],
-            "questions_detected": int(df_enriched["question_flag"].sum()),
-            "total_speaking_time": round(float(df_enriched["time_taken_sec"].sum()), 1),
-            "avg_speaking_time": round(float(df_enriched["time_taken_sec"].mean()), 1)
         }
     }
 
@@ -164,15 +174,16 @@ if __name__ == "__main__":
     df_enriched = pd.read_csv(FILE_ENRICHED)
     speaker_stats = pd.read_csv(FILE_SPEAKER_STATS)
     metrics = pd.read_csv(FILE_METRICS)
+    speaker_details = pd.read_csv(FILE_SPEAKER_DETAILS)
 
     # Run each stage
     show_stage1(df_raw)
     show_stage2(df_corrected)
     show_stage3(df_enriched)
-    show_stage4(df_enriched, speaker_stats, metrics)
+    show_stage4(speaker_stats, metrics, speaker_details)
 
     # Save results to JSON for the UI
-    save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics)
+    save_json(df_raw, df_corrected, df_enriched, speaker_stats, metrics, speaker_details)
 
     print("\n" + "="*50)
     print(" PIPELINE COMPLETE")

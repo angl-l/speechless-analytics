@@ -272,41 +272,70 @@
     }
 
     function renderStage4(data) {
+      // Validation badge
       let html = `<span class="badge">✅ Validation passed</span>`;
+
+      // Metric cards — all metrics from analysis_metrics_summary.csv
       html += `<div class="metric-grid">
         <div class="metric-card">
-          <div class="value">${data.total_speaking_time}s</div>
+          <div class="value">${data.metrics.total_rows}</div>
+          <div class="label">Total Rows</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.metrics.total_speaking_time_sec}s</div>
           <div class="label">Total Speaking Time</div>
         </div>
         <div class="metric-card">
-          <div class="value">${data.avg_speaking_time}s</div>
+          <div class="value">${data.metrics.avg_speaking_time_per_speaker_sec}s</div>
           <div class="label">Avg Speaking Time</div>
         </div>
         <div class="metric-card">
-          <div class="value">${data.questions_detected}</div>
-          <div class="label">Questions Detected</div>
+          <div class="value">${data.metrics.total_questions}</div>
+          <div class="label">Total Questions</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.metrics.avg_raw_chars}</div>
+          <div class="label">Avg Raw Chars</div>
+        </div>
+        <div class="metric-card">
+          <div class="value">${data.metrics.avg_corrected_chars}</div>
+          <div class="label">Avg Corrected Chars</div>
         </div>
         <div class="metric-card">
           <div class="value">${data.metrics.avg_length_change}</div>
-          <div class="label">Avg Length Change (chars)</div>
+          <div class="label">Avg Length Change</div>
         </div>
       </div>`;
 
+      // Speaker statistics table from analysis_speaker_stats.csv
       html += "<h3 style='margin-top:20px; color:#0d1b2a'>Speaker Statistics</h3>";
-      // Table header — added avg raw length and avg corrected length columns
-      html += "<table><tr><th>Speaker</th><th>Turns</th><th>Raw Chars</th><th>Corrected Chars</th><th>Avg Raw Length</th><th>Avg Corrected Length</th></tr>";
-      // Loop through each speaker and display all stats
+      html += "<table><tr><th>Speaker</th><th>Turns</th><th>Words</th><th>Time (sec)</th><th>Questions</th><th>Avg Speech Rate (wps)</th></tr>";
+      // Loop through each speaker and display stats
       data.speaker_stats.forEach(row => {
         html += `<tr>
           <td>${row.name}</td>
           <td>${row.total_turns}</td>
-          <td>${row.total_raw_chars}</td>
-          <td>${row.total_corr_chars}</td>
-          <td>${row.avg_raw_length}</td>
-          <td>${row.avg_corr_length}</td>
+          <td>${row.total_words}</td>
+          <td>${row.total_time}</td>
+          <td>${row.total_questions}</td>
+          <td>${row.avg_speech_rate}</td>
         </tr>`;
       });
       html += "</table>";
+
+      // Analysis details table from analysis_speaker_details.csv
+      html += "<h3 style='margin-top:20px; color:#0d1b2a'>Analysis</h3>";
+      html += "<table><tr><th>Metric</th><th>Name</th><th>Value</th></tr>";
+      // Loop through each analysis row
+      data.speaker_details.forEach(row => {
+        html += `<tr>
+          <td>${row.metric}</td>
+          <td>${row.name}</td>
+          <td>${row.value}</td>
+        </tr>`;
+      });
+      html += "</table>";
+
       document.getElementById("stage4").innerHTML = html;
     }
   </script>

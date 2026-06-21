@@ -3,16 +3,22 @@
     "rows": 25,
     "sample": [
       {
+        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "angela",
-        "text": "welcome everyone we have five points to cover in the agenda"
+        "text": "welcome everyone we have five points to cover in the agenda",
+        "time_taken_sec": 7.41
       },
       {
+        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "elena",
-        "text": "we must bear in mind that this has already gone to production"
+        "text": "we must bear in mind that this has already gone to production",
+        "time_taken_sec": 7.39
       },
       {
+        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "rihanna",
-        "text": "can we take this offline"
+        "text": "can we take this offline",
+        "time_taken_sec": 4.43
       }
     ]
   },
@@ -20,16 +26,25 @@
     "rows": 25,
     "sample": [
       {
+        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "Angela",
-        "text": "Welcome, everyone, we have five points to cover in the agenda."
+        "raw_script": "welcome everyone we have five points to cover in the agenda",
+        "text": "Welcome, everyone, we have five points to cover in the agenda.",
+        "time_taken_sec": 7.41
       },
       {
+        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "Elena",
-        "text": "We must bear in mind that this has already gone to production."
+        "raw_script": "we must bear in mind that this has already gone to production",
+        "text": "We must bear in mind that this has already gone to production.",
+        "time_taken_sec": 7.39
       },
       {
+        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "Rihanna",
-        "text": "Can we take this offline?"
+        "raw_script": "can we take this offline",
+        "text": "Can we take this offline?",
+        "time_taken_sec": 4.43
       }
     ]
   },
@@ -37,28 +52,54 @@
     "rows": 25,
     "sample": [
       {
+        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "Angela",
+        "text": "Welcome, everyone, we have five points to cover in the agenda.",
+        "time_taken_sec": 7.41,
+        "question_flag": false,
         "num_words": 11,
         "text_size_chars": 62,
-        "speech_rate_wps": 1.5,
-        "question_flag": false,
-        "speaker_turn_id": 1
+        "speech_rate_wps": 1.5
       },
       {
+        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "Elena",
+        "text": "We must bear in mind that this has already gone to production.",
+        "time_taken_sec": 7.39,
+        "question_flag": false,
         "num_words": 12,
         "text_size_chars": 62,
-        "speech_rate_wps": 1.6,
-        "question_flag": false,
-        "speaker_turn_id": 1
+        "speech_rate_wps": 1.6
       },
       {
+        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "Rihanna",
+        "text": "Can we take this offline?",
+        "time_taken_sec": 4.43,
+        "question_flag": true,
         "num_words": 5,
         "text_size_chars": 25,
-        "speech_rate_wps": 1.1,
+        "speech_rate_wps": 1.1
+      },
+      {
+        "timestamp": "2026-06-03T20:41:16.406456",
+        "name": "Solomon",
+        "text": "Yes.",
+        "time_taken_sec": 3.96,
+        "question_flag": false,
+        "num_words": 1,
+        "text_size_chars": 4,
+        "speech_rate_wps": 0.3
+      },
+      {
+        "timestamp": "2026-06-03T20:41:34.611664",
+        "name": "Angela",
+        "text": "Can you see my screen?",
+        "time_taken_sec": 5.18,
         "question_flag": true,
-        "speaker_turn_id": 1
+        "num_words": 5,
+        "text_size_chars": 22,
+        "speech_rate_wps": 1.0
       }
     ]
   },
@@ -103,6 +144,73 @@
         "total_time": 29.073,
         "total_questions": 2,
         "avg_speech_rate": 1.04
+      }
+    ],
+    "speaker_details": [
+      {
+        "metric": "Most words",
+        "name": "Elena",
+        "value": 57.0
+      },
+      {
+        "metric": "Least words",
+        "name": "Solomon",
+        "value": 32.0
+      },
+      {
+        "metric": "Most questions",
+        "name": "Rihanna",
+        "value": 3.0
+      },
+      {
+        "metric": "Total meeting time",
+        "name": "ALL",
+        "value": 158.07
+      },
+      {
+        "metric": "Average time per speaker",
+        "name": "ALL",
+        "value": 39.52
+      },
+      {
+        "metric": "1th speaker by time",
+        "name": "Angela",
+        "value": 45.257
+      },
+      {
+        "metric": "2th speaker by time",
+        "name": "Elena",
+        "value": 44.321
+      },
+      {
+        "metric": "3th speaker by time",
+        "name": "Rihanna",
+        "value": 39.421
+      },
+      {
+        "metric": "4th speaker by time",
+        "name": "Solomon",
+        "value": 29.073
+      },
+      {
+        "metric": "Average speech rate",
+        "name": "Angela",
+        "value": 1.1
+      },
+      {
+        "metric": "Average speech rate",
+        "name": "Elena",
+        "value": 1.229
+      },
+      {
+        "metric": "Average speech rate",
+        "name": "Rihanna",
+        "value": 1.1
+      },
+      {
+        "metric": "Average speech rate",
+        "name": "Solomon",
+        "value": 1.04
       }
     ],
     "metrics": {
