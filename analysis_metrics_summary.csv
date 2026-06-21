@@ -1,2 +1,2 @@
-avg_raw_chars,avg_corr_chars,avg_length_change
-37.96,38.2,0.24
+total_rows,total_speaking_time_sec,avg_speaking_time_per_speaker_sec,avg_raw_chars,avg_corrected_chars,avg_length_change,total_questions
+25,158.07,39.52,37.96,38.2,0.24,8

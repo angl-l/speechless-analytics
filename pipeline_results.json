@@ -3,22 +3,16 @@
     "rows": 25,
     "sample": [
       {
-        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "angela",
-        "text": "welcome everyone we have five points to cover in the agenda",
-        "time_taken_sec": 7.41
+        "text": "welcome everyone we have five points to cover in the agenda"
       },
       {
-        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "elena",
-        "text": "we must bear in mind that this has already gone to production",
-        "time_taken_sec": 7.39
+        "text": "we must bear in mind that this has already gone to production"
       },
       {
-        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "rihanna",
-        "text": "can we take this offline",
-        "time_taken_sec": 4.43
+        "text": "can we take this offline"
       }
     ]
   },
@@ -26,25 +20,16 @@
     "rows": 25,
     "sample": [
       {
-        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "Angela",
-        "raw_script": "welcome everyone we have five points to cover in the agenda",
-        "text": "Welcome, everyone, we have five points to cover in the agenda.",
-        "time_taken_sec": 7.41
+        "text": "Welcome, everyone, we have five points to cover in the agenda."
       },
       {
-        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "Elena",
-        "raw_script": "we must bear in mind that this has already gone to production",
-        "text": "We must bear in mind that this has already gone to production.",
-        "time_taken_sec": 7.39
+        "text": "We must bear in mind that this has already gone to production."
       },
       {
-        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "Rihanna",
-        "raw_script": "can we take this offline",
-        "text": "Can we take this offline?",
-        "time_taken_sec": 4.43
+        "text": "Can we take this offline?"
       }
     ]
   },
@@ -52,54 +37,28 @@
     "rows": 25,
     "sample": [
       {
-        "timestamp": "2026-06-03T20:30:13.263216",
         "name": "Angela",
-        "text": "Welcome, everyone, we have five points to cover in the agenda.",
-        "time_taken_sec": 7.41,
-        "question_flag": false,
         "num_words": 11,
         "text_size_chars": 62,
-        "speech_rate_wps": 1.5
+        "speech_rate_wps": 1.5,
+        "question_flag": false,
+        "speaker_turn_id": 1
       },
       {
-        "timestamp": "2026-06-03T20:30:31.447377",
         "name": "Elena",
-        "text": "We must bear in mind that this has already gone to production.",
-        "time_taken_sec": 7.39,
-        "question_flag": false,
         "num_words": 12,
         "text_size_chars": 62,
-        "speech_rate_wps": 1.6
+        "speech_rate_wps": 1.6,
+        "question_flag": false,
+        "speaker_turn_id": 1
       },
       {
-        "timestamp": "2026-06-03T20:31:07.770744",
         "name": "Rihanna",
-        "text": "Can we take this offline?",
-        "time_taken_sec": 4.43,
-        "question_flag": true,
         "num_words": 5,
         "text_size_chars": 25,
-        "speech_rate_wps": 1.1
-      },
-      {
-        "timestamp": "2026-06-03T20:41:16.406456",
-        "name": "Solomon",
-        "text": "Yes.",
-        "time_taken_sec": 3.96,
-        "question_flag": false,
-        "num_words": 1,
-        "text_size_chars": 4,
-        "speech_rate_wps": 0.3
-      },
-      {
-        "timestamp": "2026-06-03T20:41:34.611664",
-        "name": "Angela",
-        "text": "Can you see my screen?",
-        "time_taken_sec": 5.18,
+        "speech_rate_wps": 1.1,
         "question_flag": true,
-        "num_words": 5,
-        "text_size_chars": 22,
-        "speech_rate_wps": 1.0
+        "speaker_turn_id": 1
       }
     ]
   },
@@ -108,43 +67,52 @@
       {
         "name": "Angela",
         "total_turns": 7,
+        "total_words": 52,
         "total_raw_chars": 255,
         "total_corr_chars": 260,
-        "avg_raw_length": 36.43,
-        "avg_corr_length": 37.14
+        "total_time": 45.257,
+        "total_questions": 1,
+        "avg_speech_rate": 1.1
       },
       {
         "name": "Elena",
         "total_turns": 7,
+        "total_words": 57,
         "total_raw_chars": 294,
         "total_corr_chars": 294,
-        "avg_raw_length": 42.0,
-        "avg_corr_length": 42.0
+        "total_time": 44.321,
+        "total_questions": 2,
+        "avg_speech_rate": 1.229
       },
       {
         "name": "Rihanna",
         "total_turns": 6,
+        "total_words": 44,
         "total_raw_chars": 245,
         "total_corr_chars": 246,
-        "avg_raw_length": 40.83,
-        "avg_corr_length": 41.0
+        "total_time": 39.421,
+        "total_questions": 3,
+        "avg_speech_rate": 1.1
       },
       {
         "name": "Solomon",
         "total_turns": 5,
+        "total_words": 32,
         "total_raw_chars": 155,
         "total_corr_chars": 155,
-        "avg_raw_length": 31.0,
-        "avg_corr_length": 31.0
+        "total_time": 29.073,
+        "total_questions": 2,
+        "avg_speech_rate": 1.04
       }
     ],
     "metrics": {
+      "total_rows": 25,
+      "total_speaking_time_sec": 158.07,
+      "avg_speaking_time_per_speaker_sec": 39.52,
       "avg_raw_chars": 37.96,
-      "avg_corr_chars": 38.2,
-      "avg_length_change": 0.24
-    },
-    "questions_detected": 8,
-    "total_speaking_time": 158.1,
-    "avg_speaking_time": 6.3
+      "avg_corrected_chars": 38.2,
+      "avg_length_change": 0.24,
+      "total_questions": 8
+    }
   }
 }

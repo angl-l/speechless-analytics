@@ -1,5 +1,5 @@
-name,total_turns,total_raw_chars,total_corr_chars,avg_raw_length,avg_corr_length
-Angela,7,255,260,36.43,37.14
-Elena,7,294,294,42.0,42.0
-Rihanna,6,245,246,40.83,41.0
-Solomon,5,155,155,31.0,31.0
+name,total_turns,total_words,total_raw_chars,total_corr_chars,total_time,total_questions,avg_speech_rate
+Angela,7,52,255,260,45.257,1,1.1
+Elena,7,57,294,294,44.321,2,1.229
+Rihanna,6,44,245,246,39.421,3,1.1
+Solomon,5,32,155,155,29.073,2,1.04
